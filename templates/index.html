@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Speeddate</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <main>
+      <section class="setup" id="setup-screen" aria-labelledby="setup-title">
+        <div class="setup-card">
+          <img class="setup-logo" src="{{ url_for('static', filename='images/ichtus-shield.svg') }}" alt="Ichtus Antwerpen">
+          <p class="eyebrow">Klaar om elkaar te leren kennen?</p>
+          <h1 id="setup-title">Speeddate</h1>
+          <p class="intro">Kies de tijd per gesprek. De vragen worden automatisch in een willekeurige volgorde gezet.</p>
+
+          <form id="setup-form">
+            <fieldset>
+              <legend>Tijd per vraag</legend>
+              <div class="time-fields">
+                <label>
+                  <span>Minuten</span>
+                  <input id="minutes" name="minutes" type="number" min="0" max="120" value="1" inputmode="numeric">
+                </label>
+                <span class="time-separator" aria-hidden="true">:</span>
+                <label>
+                  <span>Seconden</span>
+                  <input id="seconds" name="seconds" type="number" min="0" max="59" value="10" inputmode="numeric">
+                </label>
+              </div>
+            </fieldset>
+            <p class="form-error" id="form-error" role="alert"></p>
+            <button class="primary-button" type="submit">Start de speeddate</button>
+          </form>
+          <p class="question-total">{{ questions|length }} vragen beschikbaar</p>
+        </div>
+      </section>
+
+      <section class="game hidden" id="game-screen" aria-labelledby="question">
+        <img class="shield-watermark" src="{{ url_for('static', filename='images/ichtus-shield.svg') }}" alt="" aria-hidden="true">
+        <header class="game-header">
+          <div class="game-identity">
+            <img class="game-logo" src="{{ url_for('static', filename='images/ichtus-shield.svg') }}" alt="Ichtus Antwerpen">
+            <div class="round-info">
+              <span id="round-label">Ronde 1</span>
+              <span class="dot" aria-hidden="true"></span>
+              <span id="progress-label">Vraag 1 van {{ questions|length }}</span>
+            </div>
+          </div>
+          <div class="header-actions">
+            <button class="icon-button" id="fullscreen-button" type="button" aria-label="Volledig scherm" title="Volledig scherm">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5m13 5h5v-5"/></svg>
+            </button>
+            <button class="text-button" id="settings-button" type="button">Instellingen</button>
+          </div>
+        </header>
+
+        <div class="question-area">
+          <p class="prompt">Praat samen over...</p>
+          <h2 id="question"></h2>
+        </div>
+
+        <div class="timer-area" id="timer-area">
+          <div class="timer" id="timer" role="timer" aria-live="off">01:10</div>
+          <p class="timer-status" id="timer-status" aria-live="assertive">De tijd loopt</p>
+        </div>
+
+        <footer class="game-footer">
+          <p class="shortcut"><kbd>Spatie</kbd> of <kbd>→</kbd></p>
+          <button class="next-button" id="next-button" type="button">
+            <span>Volgende vraag</span>
+            <span aria-hidden="true">→</span>
+          </button>
+        </footer>
+      </section>
+    </main>
+
+    <script>
+      window.SPEEDDATE_QUESTIONS = {{ questions|tojson }};
+    </script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>
