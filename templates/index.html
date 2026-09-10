@@ -10,7 +10,7 @@
     <main>
       <section class="setup" id="setup-screen" aria-labelledby="setup-title">
         <div class="setup-card">
-          <img class="setup-logo" src="{{ url_for('static', filename='images/ichtus-shield.svg') }}" alt="Ichtus Antwerpen">
+          <img class="setup-logo" src="{{ url_for('static', filename='images/ichtus-shield.svg', v=2) }}" alt="Ichtus Antwerpen">
           <p class="eyebrow">Klaar om elkaar te leren kennen?</p>
           <h1 id="setup-title">Speeddate</h1>
           <p class="intro">Kies de tijd per gesprek. De vragen worden automatisch in een willekeurige volgorde gezet.</p>
@@ -38,10 +38,10 @@
       </section>
 
       <section class="game hidden" id="game-screen" aria-labelledby="question">
-        <img class="shield-watermark" src="{{ url_for('static', filename='images/ichtus-shield.svg') }}" alt="" aria-hidden="true">
+        <img class="shield-watermark" src="{{ url_for('static', filename='images/ichtus-shield.svg', v=2) }}" alt="" aria-hidden="true">
         <header class="game-header">
           <div class="game-identity">
-            <img class="game-logo" src="{{ url_for('static', filename='images/ichtus-shield.svg') }}" alt="Ichtus Antwerpen">
+            <img class="game-logo" src="{{ url_for('static', filename='images/ichtus-shield.svg', v=2) }}" alt="Ichtus Antwerpen">
             <div class="round-info">
               <span id="round-label">Ronde 1</span>
               <span class="dot" aria-hidden="true"></span>
