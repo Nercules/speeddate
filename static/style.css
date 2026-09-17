@@ -306,6 +306,33 @@ h2 {
   text-wrap: balance;
 }
 
+.question-translation {
+  display: inline-block;
+  max-width: 44rem;
+  margin: clamp(1rem, 3vh, 1.75rem) auto 0;
+  color: var(--ink-soft);
+  font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+  font-style: italic;
+  line-height: 1.5;
+  text-wrap: balance;
+}
+
+.question-translation::before {
+  content: "EN";
+  display: inline-block;
+  margin-right: 0.7em;
+  padding: 0.12em 0.55em;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--brand-pale);
+  color: var(--brand-dark);
+  font-size: 0.62em;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  vertical-align: middle;
+}
+
 .timer-area {
   display: grid;
   justify-items: center;
