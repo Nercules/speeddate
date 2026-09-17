@@ -37,7 +37,7 @@ function shuffled(items) {
 function refillQuestionQueue() {
   questionQueue = shuffled(questions);
 
-  // Voorkom dezelfde vraag direct na de overgang naar een nieuwe ronde.
+  // Avoid the same question directly after moving to a new round.
   if (questionQueue.length > 1 && questionQueue[0] === lastQuestion) {
     [questionQueue[0], questionQueue[1]] = [questionQueue[1], questionQueue[0]];
   }
@@ -86,7 +86,7 @@ function finishTimer() {
   showTime(0);
   timerArea.classList.remove("almost-done");
   timerArea.classList.add("finished");
-  timerStatus.textContent = "Tijd om door te schuiven!";
+  timerStatus.textContent = "Time to switch!";
   beep();
 }
 
@@ -99,7 +99,7 @@ function updateTimer() {
 function startTimer() {
   stopTimer();
   timerArea.classList.remove("finished", "almost-done");
-  timerStatus.textContent = "De tijd loopt";
+  timerStatus.textContent = "Time is running";
   deadline = Date.now() + durationSeconds * 1000;
   showTime(durationSeconds);
   timerInterval = window.setInterval(updateTimer, 200);
@@ -111,8 +111,8 @@ function showNextQuestion() {
   lastQuestion = questionQueue.shift();
   questionNumber += 1;
   questionElement.textContent = lastQuestion;
-  roundLabel.textContent = `Ronde ${round}`;
-  progressLabel.textContent = `Vraag ${questionNumber} van ${questions.length}`;
+  roundLabel.textContent = `Round ${round}`;
+  progressLabel.textContent = `Question ${questionNumber} of ${questions.length}`;
   startTimer();
 }
 
@@ -130,7 +130,7 @@ function startGame(event) {
   const totalSeconds = minutes * 60 + seconds;
 
   if (totalSeconds < 1) {
-    formError.textContent = "Stel een tijd van minimaal één seconde in.";
+    formError.textContent = "Set a time of at least one second.";
     return;
   }
 
